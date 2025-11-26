@@ -1,0 +1,19 @@
+INFO:     Started server process [44588]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Data loaded successfully.
+Item-based model trained.
+INFO:     127.0.0.1:59340 - "GET /health HTTP/1.1" 200 OK
+Fetching global recommendations from Google Books...
+INFO:     127.0.0.1:59344 - "GET /recommend/global?limit=5 HTTP/1.1" 200 OK
+Searching for recommendations similar to: Harry Potter
+INFO:     127.0.0.1:59350 - "POST /recommend/by-items HTTP/1.1" 200 OK
+Fetching global recommendations from Google Books...
+INFO:     127.0.0.1:40340 - "GET /recommend/global?limit=2 HTTP/1.1" 200 OK
+Searching for recommendations similar to: Harry Potter
+INFO:     127.0.0.1:40348 - "POST /recommend/by-items HTTP/1.1" 200 OK
+Fetching global recommendations from Google Books...
+INFO:     127.0.0.1:46248 - "GET /recommend/global?limit=2 HTTP/1.1" 200 OK
+Searching for recommendations similar to: Harry Potter
+INFO:     127.0.0.1:58182 - "POST /recommend/by-items HTTP/1.1" 200 OK

@@ -1,0 +1,14 @@
+
+Testing Health (http://localhost:8000/health)...
+Status: 200
+Response: {'status': 'healthy'}
+
+Testing Global Recommendations (http://localhost:8000/recommend/global?limit=5)...
+Status: 200
+Success! Got 5 items.
+First item: Journey to the Center of the Earth by ['Jules Verne']
+
+Testing By Items (Harry Potter) (http://localhost:8000/recommend/by-items)...
+Status: 200
+Success! Got 2 items.
+First item: Building Brand Value the Playboy Way by ['S. Gunelius']
