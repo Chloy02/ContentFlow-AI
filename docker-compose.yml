@@ -40,6 +40,19 @@ services:
       - redis
       - ml-service
 
+  frontend:
+    build:
+      context: ./recommendation-frontend
+      dockerfile: Dockerfile
+    container_name: recommendation-frontend
+    ports:
+      - "3000:80"
+    networks:
+      - recommendation-network
+    restart: unless-stopped
+    depends_on:
+      - api-gateway
+
 networks:
   recommendation-network:
     driver: bridge
