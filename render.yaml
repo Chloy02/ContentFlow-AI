@@ -4,6 +4,7 @@ services:
     name: recommendation-api-gateway
     runtime: docker
     rootDir: recommendation-api-gateway
+    plan: free
     envVars:
       - key: SPRING_DATASOURCE_URL
         sync: false
@@ -30,6 +31,7 @@ services:
     name: recommendation-ml-service
     runtime: docker
     rootDir: recommendation-ml-service
+    plan: free
     envVars:
       - key: PORT
         value: 8000
