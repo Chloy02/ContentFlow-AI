@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import { Book, ItemIdRequest } from '../types/book';
+import type { Book, ItemIdRequest } from '../types/book';
 
 /**
  * Fetch global recommendations (trending/popular books)
