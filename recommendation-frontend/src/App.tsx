@@ -23,7 +23,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
         <BrowserRouter>
-          <div className="min-h-screen bg-gray-50">
+          <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
             <Header />
             <Routes>
               <Route path="/" element={<HomePage />} />
