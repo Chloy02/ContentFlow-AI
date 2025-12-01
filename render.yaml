@@ -1,0 +1,35 @@
+services:
+  # Spring Boot API Gateway
+  - type: web
+    name: recommendation-api-gateway
+    runtime: docker
+    rootDir: recommendation-api-gateway
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: SPRING_DATA_REDIS_HOST
+        sync: false
+      - key: SPRING_DATA_REDIS_PORT
+        value: 6379
+      - key: SPRING_DATA_REDIS_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ML_SERVICE_URL
+        fromService:
+          type: web
+          name: recommendation-ml-service
+          property: url
+
+  # Python ML Service
+  - type: web
+    name: recommendation-ml-service
+    runtime: docker
+    rootDir: recommendation-ml-service
+    envVars:
+      - key: PORT
+        value: 8000
