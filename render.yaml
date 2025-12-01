@@ -19,11 +19,11 @@ services:
         sync: false
       - key: JWT_SECRET
         sync: false
-      - key: ML_SERVICE_URL
+      - key: ML_SERVICE_HOST
         fromService:
           type: web
           name: recommendation-ml-service
-          property: url
+          property: hostport
 
   # Python ML Service
   - type: web
