@@ -1,4 +1,4 @@
-import { Book } from '../types/book';
+import type { Book } from '../types/book';
 import { Star, User } from 'lucide-react';
 
 interface BookCardProps {

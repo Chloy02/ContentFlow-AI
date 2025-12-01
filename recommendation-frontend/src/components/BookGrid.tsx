@@ -1,4 +1,5 @@
-import { Book } from '../types/book';
+import React from 'react';
+import type { Book } from '../types/book';
 import { BookCard } from './BookCard';
 import { LoadingSpinner } from './LoadingSpinner';
 
