@@ -4,30 +4,30 @@
 
 @layer base {
   :root {
-    /* Design System - Spotify-inspired Blue/Teal Colors */
-    --color-primary: #00bcff;
-    --color-primary-dark: #0085b8;
-    --color-primary-light: #4dd2ff;
-    --color-secondary: #38b2ac;
+    /* Design System - Purple/Violet Theme */
+    --color-primary: #a855f7;
+    --color-primary-dark: #7e22ce;
+    --color-primary-light: #c084fc;
+    --color-secondary: #d946ef;
     --color-accent: #fbbf24;
 
-    --color-bg-primary: #0f172a;
-    --color-bg-secondary: #1e293b;
-    --color-bg-card: #1e293b;
-    --color-bg-card-hover: #334155;
+    --color-bg-primary: #0a0118;
+    --color-bg-secondary: #1a0b2e;
+    --color-bg-card: #2d1b4e;
+    --color-bg-card-hover: #3d2b5e;
 
     --color-text-primary: #f8fafc;
     --color-text-secondary: #cbd5e1;
     --color-text-muted: #94a3b8;
 
-    --color-border: rgba(0, 188, 255, 0.1);
-    --color-border-hover: rgba(0, 188, 255, 0.3);
+    --color-border: rgba(168, 85, 247, 0.1);
+    --color-border-hover: rgba(168, 85, 247, 0.3);
 
-    /* Spotify-inspired Gradients */
-    --gradient-primary: linear-gradient(135deg, #00bcff 0%, #38b2ac 100%);
-    --gradient-secondary: linear-gradient(135deg, #4dd2ff 0%, #2c7a7b 100%);
-    --gradient-hero: linear-gradient(135deg, #00bcff 0%, #38b2ac 50%, #319795 100%);
-    --gradient-card: linear-gradient(135deg, rgba(0, 188, 255, 0.1) 0%, rgba(56, 178, 172, 0.1) 100%);
+    /* Purple/Violet Gradients */
+    --gradient-primary: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+    --gradient-secondary: linear-gradient(135deg, #c084fc 0%, #e879f9 100%);
+    --gradient-hero: linear-gradient(135deg, #a855f7 0%, #d946ef 50%, #f0abfc 100%);
+    --gradient-card: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
     --gradient-accent: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
 
     /* Typography */
@@ -220,7 +220,22 @@
   .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   .gradient-text {

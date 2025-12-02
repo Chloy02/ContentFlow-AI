@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { PixelTransition } from './PixelTransition';
 import type { Book } from '../types/book';
 import { Star, User, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
 
@@ -25,14 +26,7 @@ export const BookCard = ({ book, showScore = false, onBookClick }: BookCardProps
         return `${book.authors[0]} ${book.authors.length > 1 ? `+${book.authors.length - 1} more` : ''}`;
     };
 
-    const getRatingColor = (rating: number) => {
-        if (rating >= 4.5) return 'from-amber-400 to-yellow-500';
-        if (rating >= 4) return 'from-yellow-400 to-amber-500';
-        if (rating >= 3.5) return 'from-orange-400 to-yellow-500';
-        return 'from-gray-400 to-gray-500';
-    };
-
-    return (
+    const bookContent = (
         <motion.div
             whileHover={{ y: -8, scale: 1.02 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -150,5 +144,18 @@ export const BookCard = ({ book, showScore = false, onBookClick }: BookCardProps
                 </motion.button>
             </div>
         </motion.div>
+    );
+
+    return (
+        <PixelTransition
+            firstContent={bookContent}
+            secondContent={bookContent}
+            gridSize={10}
+            pixelColor="#a855f7"
+            once={false}
+            animationStepDuration={0.3}
+            trigger="hover"
+            className="h-full"
+        />
     );
 };

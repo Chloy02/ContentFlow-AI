@@ -1,12 +1,16 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Header } from './components/Header';
-import { HomePage } from './pages/HomePage';
-import { UserPage } from './pages/UserPage';
-import { SimilarBooksPage } from './pages/SimilarBooksPage';
-
+import { FloatingLines } from './components/FloatingLines';
+import { LoadingSpinner } from './components/LoadingSpinner';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { NotFoundPage } from './pages/NotFoundPage';
+
+// Lazy load pages for code splitting
+const HomePage = lazy(() => import('./pages/HomePage'));
+const UserPage = lazy(() => import('./pages/UserPage'));
+const SimilarBooksPage = lazy(() => import('./pages/SimilarBooksPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Create React Query client
 const queryClient = new QueryClient({
@@ -23,14 +27,38 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
         <BrowserRouter>
-          <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-            <Header />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/user" element={<UserPage />} />
-              <Route path="/similar" element={<SimilarBooksPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+          {/* Full-screen FloatingLines background - positioned independently */}
+          <div className="fixed inset-0 w-full h-full -z-10">
+            <FloatingLines
+              enabledWaves={['top', 'middle', 'bottom']}
+              lineCount={[10, 15, 20]}
+              lineDistance={[8, 6, 4]}
+              bendRadius={5.0}
+              bendStrength={-0.5}
+              interactive={true}
+              parallax={true}
+            />
+          </div>
+
+          {/* Fixed Header - outside transformed container */}
+          <Header />
+          
+          {/* Main content with background gradient */}
+          <div className="min-h-screen bg-gradient-to-br from-[#0a0118] via-[#1a0b2e] to-[#2d1b4e]">
+            <main className="pt-16 sm:pt-20">
+              <Suspense fallback={
+                <div className="flex items-center justify-center min-h-screen">
+                  <LoadingSpinner />
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/user" element={<UserPage />} />
+                  <Route path="/similar" element={<SimilarBooksPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </Suspense>
+            </main>
           </div>
         </BrowserRouter>
       </ErrorBoundary>

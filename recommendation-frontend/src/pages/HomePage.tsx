@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BookGrid } from '../components/BookGrid';
 import { BookCarousel } from '../components/BookCarousel';
+import { BounceCards } from '../components/BounceCards';
 import { BookDetailModal } from '../components/BookDetailModal';
 import { GenreChips, popularGenres } from '../components/GenreChips';
 import { SkeletonHero } from '../components/SkeletonLoader';
 import { useGlobalRecommendations } from '../hooks/useRecommendations';
-import { Sparkles, Star, BookOpen, Zap, Award, Play } from 'lucide-react';
+import { Sparkles, Star, BookOpen, Zap, Award, Play, Layers } from 'lucide-react';
 import type { Book } from '../types/book';
 
 export const HomePage = () => {
@@ -29,7 +30,7 @@ export const HomePage = () => {
     const popularPicks = books?.slice(20) || [];
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen w-full">
             {/* Hero Section with Featured Book */}
             {isLoading ? (
                 <SkeletonHero />
@@ -131,7 +132,7 @@ export const HomePage = () => {
             ) : null}
 
             {/* Content Sections */}
-            <div className="container py-8 sm:py-12 space-y-12 sm:space-y-16">
+            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '3rem 1rem' }} className="space-y-12 sm:space-y-16">
                 {/* Genre Filter */}
                 {!isLoading && (
                     <motion.section
@@ -149,6 +150,45 @@ export const HomePage = () => {
                             selectedGenre={selectedGenre}
                             onGenreSelect={setSelectedGenre}
                         />
+                    </motion.section>
+                )}
+
+                {/* Featured BounceCards Section */}
+                {!isLoading && trendingBooks.length >= 5 && (
+                    <motion.section
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="space-y-6"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg">
+                                <Layers className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">Staff Picks</h2>
+                                <p className="text-slate-400 text-sm sm:text-base">Our top recommendations just for you</p>
+                            </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <BounceCards
+                                className="bounce-cards-container"
+                                images={trendingBooks.slice(0, 5).map(book => book.thumbnail || 'https://via.placeholder.com/400')}
+                                containerWidth={600}
+                                containerHeight={350}
+                                animationDelay={0.5}
+                                animationStagger={0.1}
+                                easeType="elastic.out(1, 0.5)"
+                                transformStyles={[
+                                    'rotate(5deg) translate(-150px)',
+                                    'rotate(0deg) translate(-70px)',
+                                    'rotate(-5deg)',
+                                    'rotate(5deg) translate(70px)',
+                                    'rotate(-5deg) translate(150px)',
+                                ]}
+                                enableHover={true}
+                            />
+                        </div>
                     </motion.section>
                 )}
 
@@ -220,3 +260,5 @@ export const HomePage = () => {
         </div>
     );
 };
+
+export default HomePage;
