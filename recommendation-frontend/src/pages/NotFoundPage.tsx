@@ -15,6 +15,8 @@ export const NotFoundPage = () => {
                     Back to Home
                 </Link>
             </div>
-        </div>
-    );
+    </div>
+  );
 };
+
+export default NotFoundPage;

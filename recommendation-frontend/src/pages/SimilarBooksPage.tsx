@@ -262,3 +262,5 @@ export const SimilarBooksPage = () => {
         </div>
     );
 };
+
+export default SimilarBooksPage;
