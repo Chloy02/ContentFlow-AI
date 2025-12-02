@@ -17,8 +17,8 @@ export const Header = () => {
 
     return (
         <>
-            <header className="glass sticky top-0 z-50 border-b border-primary-500/20">
-                <div className="container">
+            <header className="glass fixed top-0 left-0 right-0 z-[100] border-b border-primary-500/20 w-full">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16 sm:h-20">
                         {/* Logo */}
                         <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
@@ -99,9 +99,9 @@ export const Header = () => {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden fixed top-16 sm:top-20 left-0 right-0 z-40 glass border-b border-primary-500/20 overflow-hidden"
+                        className="md:hidden fixed top-16 sm:top-20 left-0 right-0 z-[90] glass border-b border-primary-500/20 overflow-hidden w-full"
                     >
-                        <nav className="container py-4 space-y-2">
+                        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-2">
                             {navItems.map((item, index) => (
                                 <motion.div
                                     key={item.path}

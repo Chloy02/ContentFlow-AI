@@ -44,6 +44,7 @@ function App() {
             {/* Content layer */}
             <div className="relative z-10">
               <Header />
+              <main className="pt-16 sm:pt-20">
               <Suspense fallback={
                 <div className="flex items-center justify-center min-h-screen">
                   <LoadingSpinner />
@@ -56,6 +57,7 @@ function App() {
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </Suspense>
+              </main>
             </div>
           </div>
         </BrowserRouter>
