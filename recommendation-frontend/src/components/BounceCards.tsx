@@ -37,7 +37,7 @@ export const BounceCards = ({
             {
                 scale: 0,
                 opacity: 0,
-                rotation: (i) => (i % 2 === 0 ? -45 : 45),
+                rotation: (i: number) => (i % 2 === 0 ? -45 : 45),
             },
             {
                 scale: 1,
