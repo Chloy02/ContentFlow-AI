@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BookGrid } from '../components/BookGrid';
 import { BookCarousel } from '../components/BookCarousel';
+import { BounceCards } from '../components/BounceCards';
 import { SearchBar } from '../components/SearchBar';
 import { BookDetailModal } from '../components/BookDetailModal';
 import { useUserRecommendations } from '../hooks/useRecommendations';
-import { UserCircle, Heart, TrendingUp, Star, Target, Sparkles } from 'lucide-react';
+import { UserCircle, Heart, TrendingUp, Star, Target, Sparkles, Layers } from 'lucide-react';
 import type { Book } from '../types/book';
 
 export const UserPage = () => {
@@ -149,6 +150,45 @@ export const UserPage = () => {
                                     </div>
                                 </div>
                             </motion.div>
+                        )}
+
+                        {/* BounceCards for Top Matches */}
+                        {!isLoading && topMatches.length >= 5 && (
+                            <motion.section
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.25 }}
+                                className="space-y-6"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg">
+                                        <Layers className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">Perfect Matches</h2>
+                                        <p className="text-slate-400 text-sm sm:text-base">Your highest compatibility scores</p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-center">
+                                    <BounceCards
+                                        className="bounce-cards-user"
+                                        images={topMatches.slice(0, 5).map(book => book.thumbnail || 'https://via.placeholder.com/400')}
+                                        containerWidth={600}
+                                        containerHeight={350}
+                                        animationDelay={0.3}
+                                        animationStagger={0.08}
+                                        easeType="elastic.out(1, 0.5)"
+                                        transformStyles={[
+                                            'rotate(5deg) translate(-150px)',
+                                            'rotate(0deg) translate(-70px)',
+                                            'rotate(-5deg)',
+                                            'rotate(5deg) translate(70px)',
+                                            'rotate(-5deg) translate(150px)',
+                                        ]}
+                                        enableHover={true}
+                                    />
+                                </div>
+                            </motion.section>
                         )}
 
                         {/* Top Matches Carousel */}
