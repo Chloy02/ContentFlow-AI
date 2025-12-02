@@ -27,24 +27,25 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
         <BrowserRouter>
-          <div className="min-h-screen bg-gradient-to-br from-[#0a0118] via-[#1a0b2e] to-[#2d1b4e] relative overflow-x-hidden">
-            {/* Full-screen FloatingLines background */}
-            <div className="fixed inset-0 w-full h-full">
-              <FloatingLines
-                enabledWaves={['top', 'middle', 'bottom']}
-                lineCount={[10, 15, 20]}
-                lineDistance={[8, 6, 4]}
-                bendRadius={5.0}
-                bendStrength={-0.5}
-                interactive={true}
-                parallax={true}
-              />
-            </div>
-            
-            {/* Content layer */}
-            <div className="relative z-10">
-              <Header />
-              <main className="pt-16 sm:pt-20">
+          {/* Full-screen FloatingLines background - positioned independently */}
+          <div className="fixed inset-0 w-full h-full -z-10">
+            <FloatingLines
+              enabledWaves={['top', 'middle', 'bottom']}
+              lineCount={[10, 15, 20]}
+              lineDistance={[8, 6, 4]}
+              bendRadius={5.0}
+              bendStrength={-0.5}
+              interactive={true}
+              parallax={true}
+            />
+          </div>
+
+          {/* Fixed Header - outside transformed container */}
+          <Header />
+          
+          {/* Main content with background gradient */}
+          <div className="min-h-screen bg-gradient-to-br from-[#0a0118] via-[#1a0b2e] to-[#2d1b4e]">
+            <main className="pt-16 sm:pt-20">
               <Suspense fallback={
                 <div className="flex items-center justify-center min-h-screen">
                   <LoadingSpinner />
@@ -57,8 +58,7 @@ function App() {
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </Suspense>
-              </main>
-            </div>
+            </main>
           </div>
         </BrowserRouter>
       </ErrorBoundary>

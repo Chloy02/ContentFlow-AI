@@ -30,7 +30,7 @@ export const HomePage = () => {
     const popularPicks = books?.slice(20) || [];
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen w-full">
             {/* Hero Section with Featured Book */}
             {isLoading ? (
                 <SkeletonHero />
@@ -132,7 +132,7 @@ export const HomePage = () => {
             ) : null}
 
             {/* Content Sections */}
-            <div className="container py-8 sm:py-12 space-y-12 sm:space-y-16">
+            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '3rem 1rem' }} className="space-y-12 sm:space-y-16">
                 {/* Genre Filter */}
                 {!isLoading && (
                     <motion.section

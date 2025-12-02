@@ -34,7 +34,7 @@ export const UserPage = () => {
 
     return (
         <div className="min-h-screen">
-            <div className="container py-8 sm:py-12 space-y-8">
+            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '3rem 1rem' }} className="space-y-8">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
