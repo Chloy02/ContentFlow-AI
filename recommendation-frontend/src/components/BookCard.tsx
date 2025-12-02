@@ -25,13 +25,6 @@ export const BookCard = ({ book, showScore = false, onBookClick }: BookCardProps
         return `${book.authors[0]} ${book.authors.length > 1 ? `+${book.authors.length - 1} more` : ''}`;
     };
 
-    const getRatingColor = (rating: number) => {
-        if (rating >= 4.5) return 'from-amber-400 to-yellow-500';
-        if (rating >= 4) return 'from-yellow-400 to-amber-500';
-        if (rating >= 3.5) return 'from-orange-400 to-yellow-500';
-        return 'from-gray-400 to-gray-500';
-    };
-
     return (
         <motion.div
             whileHover={{ y: -8, scale: 1.02 }}
